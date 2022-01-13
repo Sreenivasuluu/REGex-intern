@@ -1,0 +1,133 @@
+1. What is the difference between pushing and pulling..?
+
+Pushing : Push used to send the recent commit history from your local repository up to GitHub. This process known as PUSHING.
+
+Pulling : A pull grabs any changes from the GitHub repository and merges them into your local repository and this process is PULLING.
+
+If you're the only one working on a repository, pushing is fairly simple. If there are others accessing the repository, you may need to pull before you can push.
+
+2. How to initialize a new git repository[ Describe all the steps ]..?
+
+Using Git bash
+
+>>> A new repository from scratch
+Create a directory (using mkdir command) to contain the project.
+Go into the new directory(using cd command).
+Type git init.
+Write some code(whatever you like)
+Type git add to add the files.
+Type git commit with message what you did
+The first file to create is probably a ReadMe file.
+
+>>>A new repo from an existing project
+Go into the directory containing the project.
+Type git init.
+Type git add to add all of the relevant files.
+You’ll probably want to create a .gitignore file right away, to indicate all of the files you don’t want to track. Use git add .gitignore, too.
+Type git commit with message to tell what you did
+3. What is the use of Git clone and how to use it?
+
+Git clone is primarily used to point to an existing repo and make a clone or copy of that repo at in a new directory, at another location. The original repository can be located on the local filesystem or on remote machine accessible supported protocols.
+
+Syntax:  git clone <repository URL>  
+
+>>> Open GitHub and navigate to the main page of the repository.
+
+>>> Under the repository name, click on Clone or download.
+
+>>> Select the Clone with HTTPs section and copy the clone URL for the repository. For the empty repository, you can copy the repository page URL from your browser and skip to next step.
+
+>>> Open Git Bash and change the current working directory to your desired location where you want to create the local copy of the repository.
+
+>>> Use the git clone command with repository URL to make a copy of the remote repository. See the below command:
+
+git clone https://github.com/ImDwivedi1/Git-Example.git  
+
+Now, Press Enter. Hence, your local cloned repository will be created.
+
+----->> If you want to clone a repository into a Specific Local Folder , use below syntax
+
+ git clone https://github.com/ImDwivedi1/Git-Example.git "new folder(2)"  
+
+4. How to ignore some files/folders from pushing?
+
+Simply by putting a dot(.) before the filename as (.gitignore). It ignores files and not push them.
+
+5. What do you mean by Branch?
+
+Which branch should be used to keep deployment-ready code?
+Create a new branch called development from the main branch.
+Checkout one more branch deployment from the previous branch.
+Push different data into both branches.
+Merge data from both branches to the main branch.
+A Branch represents an independent line of development. Branches serve as an abstraction for the edit/stage/commit process. You can think of them as a way to request a brand new working directory, staging area, and project history.
+
+The developers in the team constantly commit their work into a single, central branch which is always in a deployment-ready state. In other words, the main branch for the project should only contain tested and quality work, and should never be broken.
+A new branch called development from the main branch:
+$ git branch development
+
+This will create a new branch. But before you start making changes to your code, you will have to first switch to the new branch you just created. To do that, run
+
+$ git checkout development
+
+Many developers, especially when they’re just getting started, forget switching to the new branch. That’s why you can use this command that will create the new branch and immediately switch you to it:
+
+$ git checkout -b development
+
+Once you’ve created a new branch and switched to it, you can start making changes in your code. However, all of these changes (including the new branch) is still only in your local machine.
+
+$ git push -u origin development
+
+Checkout one more branch deployment from the previous branch
+$ git checkout -b deployment
+
+$ git commit -m "deployment branch"
+
+$ git push -u origin deployment
+
+Merging a Branch
+$ git checkout development
+
+$ git merge deployment
+
+$ git push origin development
+
+$ git checkout master
+
+$ git merge development
+
+$ git push origin master
+
+6. How to resolve conflict with merge?
+
+Merge conflicts happen when you merge branches that have competing commits, and Git needs your help to decide which changes to incorporate in the final merge.
+
+Git can often resolve differences between branches and merge them automatically. Usually, the changes are on different lines, or even in different files, which makes the merge simple for computers to understand. However, sometimes there are competing changes that Git can't resolve without your help. Often, merge conflicts happen when people make different changes to the same line of the same file, or when one person edits a file and another person deletes the same file.
+
+Then follow the below process:
+
+Open Git Bash.
+Navigate into the local Git repository that has the merge conflict.
+3. Check git status to know the file which has merge conflict
+
+4. Open your favorite text editor using (vi.filename) command and navigate to the file that has merge conflicts.
+
+5. When you open the file in your text editor, you'll see the changes from the HEAD or base branch after the line <<<<<<< HEAD. Next, you'll see =======, which divides your changes from the changes in the other branch, followed by >>>>>>> BRANCH-NAME.
+
+  6. Delete the conflict markers <<<<<<<, =======, >>>>>>> and make the changes you want in the final merge.
+
+7. Now git add . for adding all changes, then git commit with some message.
+
+7. What is rebase and how is it different from merge in git ?
+
+Git rebase is a command that allows developers to integrate changes from one branch to another.
+Working:: Git rebase compresses all the changes into a single “patch.” Then it integrates the patch onto the target branch. Rebasing flattens history. It transfers the completed work from one branch to another. In the process, unwanted history is eliminated. 
+
+Git rebase and merge both integrate changes from one branch into another. Where they differ is how it's done.
+
+>>>Git rebase moves a feature branch into a master. 
+
+>>>Git merge adds a new commit, preserving the history.
+
+When to Use Merge vs. Rebase
+If you're working alone or on a small team, use rebase. If you're working with a big team, use merge. 
